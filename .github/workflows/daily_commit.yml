@@ -22,8 +22,8 @@ jobs:
 
       - name: Commit and Push
         run: |
-          git config --global user.name "amalinars"
-          git config --global user.email "keymarlin28@gmail.com"
+          git config --local user.name "amalinars"
+          git config --local user.email "keymarlin28@gmail.com"
           git add activity_log.txt
-          git commit -m "chore: automatic log update $(date +'%Y-%m-%d %H:%M')"
-          git push
+          git commit -m "chore: automatic log update $(date +'%Y-%m-%d %H:%M')" || echo "No changes to commit"
+          git push origin main
