@@ -1,27 +1,29 @@
-name: Auto Commit
+name: Auto Commit Bot
 
 on:
   schedule:
-    - cron: '0 9 * * *' # Jalan setiap jam 9 pagi
-  workflow_dispatch: # Biar bisa dijalanin manual kalau mau
+    - cron: '*/5 * * * *'  # Jalan otomatis setiap 5 menit
+  workflow_dispatch:      # Tombol manual buat ngetes bot jalan atau nggak
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Run Script
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Run script
         run: python bot_commit.py
 
-      - name: Push changes
+      - name: Commit and Push
         run: |
-          git config --local user.email "kamu@email.com"
-          git config --local user.name "UsernameKamu"
+          git config --global user.name "amalinars"
+          git config --global user.email "keymarlin28@gmail.com"
+          git add activity_log.txt
+          git commit -m "chore: automatic log update $(date +'%Y-%m-%d %H:%M')"
           git push
