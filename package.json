@@ -1,0 +1,9 @@
+{
+  "name": "auto-commit-bot",
+  "version": "1.0.0",
+  "description": "GitHub Auto Commit Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  }
+}
